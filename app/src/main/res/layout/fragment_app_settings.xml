@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TableRow android:layout_marginTop="100dp">
+
+        <TextView
+            android:id="@+id/txtchooseformat"
+            style="@style/ExplanationTextStyle"
+            android:text="@string/time_format_text" />
+    </TableRow>
+
+    <TableRow>
+
+        <Button
+            android:id="@+id/btnhhformat"
+            style="@style/HourFormatBtnStyle"
+            android:text="@string/settings_btn12h" />
+
+        <Button
+            android:id="@+id/btnHHformat"
+            style="@style/HourFormatBtnStyle"
+            android:text="@string/settings_btn24h" />
+    </TableRow>
+
+
+</TableLayout>

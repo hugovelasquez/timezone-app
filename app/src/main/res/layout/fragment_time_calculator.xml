@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TableRow android:layout_marginTop="75dp">
+
+        <TextView
+            android:id="@+id/txtwelcome"
+            style="@style/ExplanationTextStyle"
+            android:text="@string/convert_time_text" />
+    </TableRow>
+
+    <TableRow>
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_height="45dp"
+            android:layout_width="150dp"
+            android:textAlignment="center"
+            android:layout_weight="1"
+            />
+
+        <EditText
+            android:id="@+id/edit_input_time_convert_1"
+            android:layout_height="45dp"
+            android:layout_width="45dp"
+            android:layout_weight="0"
+            />
+
+        <TextView
+            android:id="@+id/txt_input_time_doppelpunkt"
+            android:layout_height="45dp"
+            android:layout_width="10dp"
+            android:text=":"
+            android:layout_weight="0"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/edit_input_time_convert_2"
+            android:layout_height="45dp"
+            android:layout_width="45dp"
+            android:layout_weight="1"
+            />
+    </TableRow>
+
+    <TableRow android:layout_marginTop="30dp">
+
+        <TextView
+            android:id="@+id/header_city_1"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:text="city1" />
+
+        <TextView
+        android:id="@+id/time_city_1"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+            android:layout_weight="1"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:text="time1" />
+
+    </TableRow>
+
+    <TableRow>
+
+    <TextView
+        android:id="@+id/remarks_city_1"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="0dp"
+        android:textAlignment="center"
+        android:textSize="17sp"
+        android:text="remark1"/>
+
+    </TableRow>
+
+    <TableRow android:layout_marginTop="30dp">
+
+        <TextView
+            android:id="@+id/header_city_2"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:text="city2" />
+
+        <TextView
+            android:id="@+id/time_city_2"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:text="time2" />
+
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/remarks_city_2"
+            android:layout_height="wrap_content"
+            android:layout_span="4"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:textSize="17sp"
+            android:text="remark2"/>
+
+    </TableRow>
+
+    <TableRow android:layout_marginTop="30dp">
+
+        <TextView
+            android:id="@+id/header_city_3"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:text="city3" />
+
+        <TextView
+            android:id="@+id/time_city_3"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:text="time3" />
+
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/remarks_city_3"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:textSize="17sp"
+            android:text="remark3"/>
+
+    </TableRow>
+
+
+</TableLayout>

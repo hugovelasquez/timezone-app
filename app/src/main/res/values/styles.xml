@@ -1,0 +1,58 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="BaseTextViewStyle">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:layout_marginLeft">5sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="HeaderStyle" parent="BaseTextViewStyle">
+        <item name="android:textSize">25sp</item>
+        <item name="android:layout_marginTop">8sp</item>
+    </style>
+
+    <style name="CityHeaderStyle" parent="HeaderStyle">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="DateStyle" parent="BaseTextViewStyle">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="HourFormatBtnStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_margin">20dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:colorBackground">@color/lightGrey</item>
+    </style>
+
+    <style name="ExplanationTextStyle">
+        <item name="android:layout_span">2</item>
+        <item name="android:layout_margin">15dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+</resources>
