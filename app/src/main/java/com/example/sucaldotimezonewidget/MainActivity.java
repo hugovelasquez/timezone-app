@@ -16,6 +16,7 @@ import android.widget.Button;
 import com.google.android.material.navigation.NavigationView;
 
 // implements "Navigation...Listener" needed for defining the drawer menu listeners
+// this is a comment from sofia to show hugo how git works
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
