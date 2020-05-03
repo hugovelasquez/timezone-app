@@ -31,12 +31,10 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
     private ArrayAdapter<CharSequence> adapter;
     private Button calculateBtn;
     private TimePicker timePicker;
+    private TableLayout calculatedTimesTable;
 
     private String selectedCity;
     private String timePattern;
-
-    private TableLayout calculatedTimesTable;
-
     private List<Integer> row1Ids = new ArrayList<>();
 
     @Nullable
@@ -86,10 +84,9 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
 
         for (String city : cities) {
             WidgetPreferences preferences = new WidgetPreferences(getContext());
-            String otherTimezone = preferences.getTimezoneOfCity(city);
+            String timezone = preferences.getTimezoneOfCity(city);
 
-            String cityName = city;
-            String timeOfCity = getFormattedTimeOfOtherCity(selectedTime.getTime(), otherTimezone);
+            String timeOfCity = getFormattedTimeOfOtherCity(selectedTime.getTime(), timezone);
             String relativeDay = getDayRelativeToSelectedTime(selectedTime.getTime(), dayOfSelectedTime);
 
             TableRow tr = new TableRow(getContext());
@@ -102,7 +99,7 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
 
 
             TextView labelCity = new TextView(getContext());
-            labelCity.setText(cityName);
+            labelCity.setText(city);
             tr.addView(labelCity);
 
             TextView labelTime = new TextView(getContext());
@@ -117,7 +114,6 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
                     TableLayout.LayoutParams.MATCH_PARENT,
                     TableLayout.LayoutParams.WRAP_CONTENT));
         }
-
     }
 
     private void removeCalculationRows(View rootView) {
