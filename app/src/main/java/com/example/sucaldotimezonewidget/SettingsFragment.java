@@ -38,13 +38,13 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
         spinnerCity3 = rootView.findViewById(R.id.spinnerselectcity3);
         spinnerCity4 = rootView.findViewById(R.id.spinnerselectcity4);
 
-        // Assign drop-down menus to spinners
-        assignDropDownMenuToSpinner(spinnerCity1);
-        assignDropDownMenuToSpinner(spinnerCity2);
-        assignDropDownMenuToSpinner(spinnerCity3);
-        assignDropDownMenuToSpinner(spinnerCity4);
+        // Assign drop-down menus to spinners and define default
+        assignDropDownMenuToSpinner(spinnerCity1,getString(R.string.selected_city1_key));
+        assignDropDownMenuToSpinner(spinnerCity2,getString(R.string.selected_city2_key));
+        assignDropDownMenuToSpinner(spinnerCity3,getString(R.string.selected_city3_key));
+        assignDropDownMenuToSpinner(spinnerCity4,getString(R.string.selected_city4_key));
 
-        // As a default highlight btn12format
+        // Define default button configuration
         highlightButtonOfPreChosenFormat();
 
         // Define button listeners
@@ -68,12 +68,26 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
         return rootView;
     }
 
-    private void assignDropDownMenuToSpinner(Spinner spinner) {
+    private void assignDropDownMenuToSpinner(Spinner spinner, String cityKey) {
         // R.array.settings_select_city is defined in strings.xml
         adapter = ArrayAdapter.createFromResource(getActivity(), R.array.settings_select_city, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+        // If spinner selections have already been stored then retrieve them and use them
+        int selectedCity = 0;
+        WidgetPreferences widgetPreferences = new WidgetPreferences(getActivity().getApplicationContext());
+        if (widgetPreferences.isCityKeyPresent(cityKey)){
+            if (widgetPreferences.getStoredCitySelection(cityKey).equals(getString(R.string.text_sydney))) {
+            selectedCity = 0;
+            } else if (widgetPreferences.getStoredCitySelection(cityKey).equals(getString(R.string.text_nyc))){
+                selectedCity = 1;
+            } else if (widgetPreferences.getStoredCitySelection(cityKey).equals(getString(R.string.text_sivar))){
+                selectedCity = 2;
+            } else if (widgetPreferences.getStoredCitySelection(cityKey).equals(getString(R.string.text_bochum))){
+            selectedCity = 3;}
+        }
+        spinner.setSelection(selectedCity);
     }
 
     // Store selected hour format outside of the App (--> WidgetPreferences.java)
@@ -82,7 +96,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
         widgetPreferences.setTimePatternToStore(timePattern);
     }
 
-    // This method is used only every time the App is launched (Default config)
+    // Default Button Configuration: this method is used only each time the App is launched
     private void highlightButtonOfPreChosenFormat() {
         Button buttonToHighlight = btn12HourFormat;
         // If a timePattern has already been stored then retrieve it and highlight the button instead of the default
@@ -122,16 +136,12 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
                 setWidgetCitySettings(selectedCity4, getString(R.string.selected_city4_key));
                 break;
         }
-        Log.e("SETTINGS", "selected city 1 is " + selectedCity1);
-        Log.e("SETTINGS", "selected city 2 is " + selectedCity2);
-        Log.e("SETTINGS", "selected city 3 is " + selectedCity3);
-        Log.e("SETTINGS", "selected city 4 is " + selectedCity4);
+
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
     }
-
 
     private void setColorOfButtonClicked(Button button) {
         button.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.blue));

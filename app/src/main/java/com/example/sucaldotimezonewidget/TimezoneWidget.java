@@ -37,14 +37,14 @@ public class TimezoneWidget extends AppWidgetProvider {
 
         // Link the xml layout file to this activity (WidgetProvider)
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.timezone_widget);
+
         // Android calculates current Date
         currentDate = new Date();
         // Call method to set Time and Date of my desired locations
-        setTimeDateOfLocation(context.getString(R.string.sydney_timezone),R.id.time_sydney,R.id.date_sydney,views);
-
-        setTimeDateOfLocation(context.getString(R.string.nyc_timezone),R.id.time_nyc,R.id.date_nyc,views);
-        setTimeDateOfLocation(context.getString(R.string.sivar_timezone),R.id.time_sivar,R.id.date_sivar,views);
-        setTimeDateOfLocation(context.getString(R.string.bochum_timezone),R.id.time_bochum,R.id.date_bochum,views);
+        setHeaderTimeDateOfLocation(context.getString(R.string.sydney_timezone),selectedCity1,R.id.header_row1, R.id.time_row1,R.id.date_row1,views);
+        setHeaderTimeDateOfLocation(context.getString(R.string.bochum_timezone),selectedCity2,R.id.header_row2, R.id.time_row2,R.id.date_row2,views);
+        setHeaderTimeDateOfLocation(context.getString(R.string.nyc_timezone),selectedCity3,R.id.header_row3, R.id.time_row3,R.id.date_row3,views);
+        setHeaderTimeDateOfLocation(context.getString(R.string.sivar_timezone),selectedCity4,R.id.header_row4, R.id.time_row4,R.id.date_row4,views);
         Log.d("WIDGET", "finished setting time zones");
 
 
@@ -72,7 +72,8 @@ public class TimezoneWidget extends AppWidgetProvider {
     }
 
 
-    private static void setTimeDateOfLocation (String timezone, int timeViewId, int dateViewId, RemoteViews views){
+    private static void setHeaderTimeDateOfLocation(String timezone, String selectedCity, int headerViewId, int timeViewId, int dateViewId, RemoteViews views){
+        views.setTextViewText(headerViewId, selectedCity);
         String locationTime = getTimeOfLocationFormatted(timezone);
         views.setTextViewText(timeViewId, locationTime);
         String locationDate = getDateOfLocationFormatted(timezone);

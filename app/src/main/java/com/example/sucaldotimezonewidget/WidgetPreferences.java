@@ -53,9 +53,14 @@ public class WidgetPreferences {
         return sharedPreferences.getString(cityKey, null);
     }
 
-    // Shorter version of defining an If-loop (return only if true)
+    // Shorter version of defining an If-loop (return only if sharedPreferences contains time Key)
     public boolean isTimeKeyPresent() {
         return sharedPreferences.contains(context.getString(R.string.time_pattern_key));
+    }
+
+    // Shorter version of defining an If-loop (return only if sharedPreferences contains cityKey)
+    public boolean isCityKeyPresent(String cityKey) {
+        return sharedPreferences.contains(cityKey);
     }
 
     // Method for getting the Timezone of the city selected via spinners

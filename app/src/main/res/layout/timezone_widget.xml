@@ -15,58 +15,54 @@
         android:src="@drawable/refresh_icon_24" />
 
     <TextView
-        android:id="@+id/header_sydney"
-        style="@style/CityHeaderStyle"
-        android:text="@string/text_sydney" />
+        android:id="@+id/header_row1"
+        style="@style/CityHeaderStyle"   />
 
     <TextView
-        android:id="@+id/time_sydney"
+        android:id="@+id/time_row1"
         style="@style/HeaderStyle" />
 
     <TextView
-        android:id="@+id/date_sydney"
+        android:id="@+id/date_row1"
         style="@style/DateStyle"
         android:layout_columnSpan="2" />
 
     <TextView
-        android:id="@+id/header_bochum"
-        style="@style/CityHeaderStyle"
-        android:text="@string/text_bochum" />
+        android:id="@+id/header_row2"
+        style="@style/CityHeaderStyle" />
 
     <TextView
-        android:id="@+id/time_bochum"
+        android:id="@+id/time_row2"
         style="@style/HeaderStyle" />
 
     <TextView
-        android:id="@+id/date_bochum"
+        android:id="@+id/date_row2"
         style="@style/DateStyle"
         android:layout_columnSpan="2" />
 
     <TextView
-        android:id="@+id/header_nyc"
-        style="@style/CityHeaderStyle"
-        android:text="@string/text_nyc" />
+        android:id="@+id/header_row3"
+        style="@style/CityHeaderStyle" />
 
     <TextView
-        android:id="@+id/time_nyc"
+        android:id="@+id/time_row3"
         style="@style/HeaderStyle" />
 
     <TextView
-        android:id="@+id/date_nyc"
+        android:id="@+id/date_row3"
         style="@style/DateStyle"
         android:layout_columnSpan="2" />
 
     <TextView
-        android:id="@+id/header_sivar"
-        style="@style/CityHeaderStyle"
-        android:text="@string/text_sivar" />
+        android:id="@+id/header_row4"
+        style="@style/CityHeaderStyle" />
 
     <TextView
-        android:id="@+id/time_sivar"
+        android:id="@+id/time_row4"
         style="@style/HeaderStyle" />
 
     <TextView
-        android:id="@+id/date_sivar"
+        android:id="@+id/date_row4"
         style="@style/DateStyle"
         android:layout_columnSpan="2" />
 
