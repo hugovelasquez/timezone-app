@@ -4,10 +4,10 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <TableLayout
-        xmlns:tools="http://schemas.android.com/tools"
+    <TableLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/calculated_times_table"
         tools:context=".MainActivity">
 
         <TableRow android:layout_marginTop="75dp">
@@ -40,32 +40,10 @@
             <Button
                 android:id="@+id/calculate_btn"
                 style="@style/HourFormatBtnStyle"
-                android:text="@string/calculate_btn_text"/>
+                android:text="@string/calculate_btn_text" />
         </TableRow>
 
-
-        <TableRow android:layout_marginTop="30dp">
-
-            <TextView
-                android:id="@+id/header_city_1"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/time_city_1"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/remarks_city_1"
-                android:textAlignment="center"
-                android:textSize="20sp" />
-
-        </TableRow>
-
+        <TableRow android:id="@+id/time_calculation_1"></TableRow>
 
     </TableLayout>
 
