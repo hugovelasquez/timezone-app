@@ -26,13 +26,13 @@ public class TimezoneWidget extends AppWidgetProvider {
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
+        // Definition of variables from SharedPreferences
         WidgetPreferences widgetPreferences = new WidgetPreferences(context);
         timePattern = widgetPreferences.getStoredTimePattern();
         selectedCity1 = widgetPreferences.getStoredCitySelection(context.getString(R.string.selected_city1_key));
         selectedCity2 = widgetPreferences.getStoredCitySelection(context.getString(R.string.selected_city2_key));
         selectedCity3 = widgetPreferences.getStoredCitySelection(context.getString(R.string.selected_city3_key));
         selectedCity4 = widgetPreferences.getStoredCitySelection(context.getString(R.string.selected_city4_key));
-
         datePattern = context.getString(R.string.date_format); // Default value
 
         // Link the xml layout file to this activity (WidgetProvider)
@@ -41,6 +41,7 @@ public class TimezoneWidget extends AppWidgetProvider {
         currentDate = new Date();
         // Call method to set Time and Date of my desired locations
         setTimeDateOfLocation(context.getString(R.string.sydney_timezone),R.id.time_sydney,R.id.date_sydney,views);
+
         setTimeDateOfLocation(context.getString(R.string.nyc_timezone),R.id.time_nyc,R.id.date_nyc,views);
         setTimeDateOfLocation(context.getString(R.string.sivar_timezone),R.id.time_sivar,R.id.date_sivar,views);
         setTimeDateOfLocation(context.getString(R.string.bochum_timezone),R.id.time_bochum,R.id.date_bochum,views);
