@@ -61,7 +61,6 @@
 
             <TextView
                 android:id="@+id/remarks_city_1"
-                android:text="remark1"
                 android:textAlignment="center"
                 android:textSize="20sp" />
 
