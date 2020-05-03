@@ -4,17 +4,22 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-public class SettingsFragment extends Fragment {
+public class SettingsFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
     // Definition of variables
     private Button btn12HourFormat, btn24HourFormat;
+    private Spinner spinnerCity1, spinnerCity2, spinnerCity3, spinnerCity4;
+    private ArrayAdapter<CharSequence> adapter;
 
     @Nullable
     @Override
@@ -24,13 +29,23 @@ public class SettingsFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_app_settings,container,false);
 
         // Assign variables
-        btn12HourFormat = (Button) rootView.findViewById(R.id.btnhhformat);
-        btn24HourFormat = (Button) rootView.findViewById(R.id.btnHHformat);
+        btn12HourFormat = rootView.findViewById(R.id.btnhhformat);
+        btn24HourFormat = rootView.findViewById(R.id.btnHHformat);
+        spinnerCity1 = rootView.findViewById(R.id.spinnerselectcity1);
+        spinnerCity2 = rootView.findViewById(R.id.spinnerselectcity2);
+        spinnerCity3 = rootView.findViewById(R.id.spinnerselectcity3);
+        spinnerCity4 = rootView.findViewById(R.id.spinnerselectcity4);
+
+        // Assign drop-down menus to spinners
+        assignDropDownMenuToSpinner(spinnerCity1);
+        assignDropDownMenuToSpinner(spinnerCity2);
+        assignDropDownMenuToSpinner(spinnerCity3);
+        assignDropDownMenuToSpinner(spinnerCity4);
 
         // As a default highlight btn12format
         highlightButtonOfPreChosenFormat();
 
-        // Define listeners
+        // Define button listeners
         btn12HourFormat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +86,14 @@ public class SettingsFragment extends Fragment {
         setColorOfButtonClicked(buttonToHighlight);
     }
 
+    private void assignDropDownMenuToSpinner(Spinner spinner){
+        // R.array.settings_select_city is defined in strings.xml
+        adapter = ArrayAdapter.createFromResource(getActivity(), R.array.settings_select_city, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+    }
+
     private void setColorOfButtonClicked(Button button) {
         button.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.blue));
         button.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
@@ -83,4 +106,13 @@ public class SettingsFragment extends Fragment {
 
 
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 }
