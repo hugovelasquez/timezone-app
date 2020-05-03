@@ -42,6 +42,8 @@
 
     <string name="settings_btn12h">12h-format</string>
     <string name="settings_btn24h">24h-format</string>
+
     <string name="convert_time_text">Input the time you want to convert:</string>
+    <string name="calculate_btn_text">Calculate time</string>
 
 </resources>
