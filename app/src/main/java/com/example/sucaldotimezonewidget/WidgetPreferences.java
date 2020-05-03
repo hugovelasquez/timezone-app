@@ -22,8 +22,9 @@ public class WidgetPreferences {
         locationMap = new HashMap<>();
         locationMap.put(context.getString(R.string.text_sydney), context.getString(R.string.sydney_timezone));
         locationMap.put(context.getString(R.string.text_bochum), context.getString(R.string.bochum_timezone));
-        locationMap.put(context.getString(R.string.text_sydney), context.getString(R.string.sydney_timezone));
-        locationMap.put(context.getString(R.string.text_sydney), context.getString(R.string.sydney_timezone));
+        locationMap.put(context.getString(R.string.text_nyc), context.getString(R.string.nyc_timezone));
+        locationMap.put(context.getString(R.string.text_sivar), context.getString(R.string.sivar_timezone));
+        locationMap.put(context.getString(R.string.text_toronto), context.getString(R.string.toronto_timezone));
     }
 
     // Method for storing time Pattern (Key for storing is R.string.time_pattern_key)
