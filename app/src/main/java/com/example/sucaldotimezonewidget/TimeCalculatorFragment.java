@@ -37,12 +37,14 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
     private String timePattern;
     private List<Integer> row1Ids = new ArrayList<>();
 
+    private WidgetPreferences widgetPreferences;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_time_calculator, container, false);
 
-        WidgetPreferences widgetPreferences = new WidgetPreferences(getContext());
+        widgetPreferences = new WidgetPreferences(getContext());
         timePattern = widgetPreferences.getStoredTimePattern();
 
         spinner = rootView.findViewById(R.id.spinner);
@@ -83,8 +85,7 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
         List<String> cities = getCitiesToCalculate();
 
         for (String city : cities) {
-            WidgetPreferences preferences = new WidgetPreferences(getContext());
-            String timezone = preferences.getTimezoneOfCity(city);
+            String timezone = widgetPreferences.getTimezoneOfCity(city);
 
             String timeOfCity = getFormattedTimeOfOtherCity(selectedTime.getTime(), timezone);
             String relativeDay = getDayRelativeToSelectedTime(selectedTime.getTime(), dayOfSelectedTime);
@@ -137,7 +138,7 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
     }
 
     private Calendar getTimeOfSelectedTimeAndCity() {
-        String selectedTimezone = getString(R.string.sydney_timezone);
+        String selectedTimezone = widgetPreferences.getTimezoneOfCity(selectedCity);
 
         TimeZone.setDefault(TimeZone.getTimeZone(selectedTimezone));
         Calendar calendar = Calendar.getInstance();
