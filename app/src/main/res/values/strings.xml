@@ -15,6 +15,7 @@
     <string name="hour_format_12">hh:mm aa</string>
     <string name="hour_format_24">HH:mm</string>
     <string name="date_format">EEEE dd MMM</string>
+    <string name="day_format">EEEE</string>
 
     <string name="text_sydney">Sydney</string>
     <string name="text_nyc">NYC</string>

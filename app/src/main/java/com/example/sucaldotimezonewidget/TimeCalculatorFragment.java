@@ -29,6 +29,7 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
 
     private TextView cityName1;
     private TextView cityTime1;
+    private TextView cityDay1;
 
     private String selectedCity;
     private String timePattern;
@@ -49,6 +50,7 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
 
         cityName1 = rootView.findViewById(R.id.header_city_1);
         cityTime1 = rootView.findViewById(R.id.time_city_1);
+        cityDay1 = rootView.findViewById(R.id.remarks_city_1);
 
         calculateBtn = rootView.findViewById(R.id.calculate_btn);
         calculateBtn.setOnClickListener(new View.OnClickListener() {
@@ -73,11 +75,11 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
 
     private void calculateTime() {
         Date selectedTime = getTimeOfTimePickerFromCity();
-
-        String formattedOtherTime = getFormattedTimeOfOtherCity(selectedTime);
+        String otherTimezone = getString(R.string.nyc_timezone);
 
         cityName1.setText(getString(R.string.text_nyc));
-        cityTime1.setText(formattedOtherTime);
+        cityTime1.setText(getFormattedTimeOfOtherCity(selectedTime, otherTimezone));
+        cityDay1.setText(getDayOfTheWeek(selectedTime, otherTimezone));
 
     }
 
@@ -92,11 +94,16 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
         return calendar.getTime();
     }
 
-    private String getFormattedTimeOfOtherCity(Date selectedTime) {
-        String otherTimezone = getString(R.string.nyc_timezone);
-
-        TimeZone.setDefault(TimeZone.getTimeZone(otherTimezone));
+    private String getFormattedTimeOfOtherCity(Date selectedTime, String timezone) {
+        TimeZone.setDefault(TimeZone.getTimeZone(timezone));
         SimpleDateFormat timeFormat = new SimpleDateFormat(timePattern);
+
+        return timeFormat.format(selectedTime);
+    }
+
+    private String getDayOfTheWeek(Date selectedTime, String timezone) {
+        TimeZone.setDefault(TimeZone.getTimeZone(timezone));
+        SimpleDateFormat timeFormat = new SimpleDateFormat(getString(R.string.day_format));
 
         return timeFormat.format(selectedTime);
     }
