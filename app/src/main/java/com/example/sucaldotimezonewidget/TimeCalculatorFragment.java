@@ -80,7 +80,7 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
 
         cityName1.setText(getString(R.string.text_nyc));
         cityTime1.setText(getFormattedTimeOfOtherCity(selectedTime.getTime(), otherTimezone));
-        cityDay1.setText(getDayRelativeToSelectedTime(selectedTime.getTime(), otherTimezone, dayOfSelectedTime));
+        cityDay1.setText(getDayRelativeToSelectedTime(selectedTime.getTime(), dayOfSelectedTime));
 
     }
 
@@ -102,9 +102,7 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
         return timeFormat.format(selectedTime);
     }
 
-    private String getDayRelativeToSelectedTime(Date selectedTime, String timezone, int dayOfSelectedLocation) {
-        TimeZone.setDefault(TimeZone.getTimeZone(timezone));
-
+    private String getDayRelativeToSelectedTime(Date selectedTime, int dayOfSelectedLocation) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(selectedTime);
         int dayOfOtherLocation = calendar.get(Calendar.DAY_OF_YEAR);
