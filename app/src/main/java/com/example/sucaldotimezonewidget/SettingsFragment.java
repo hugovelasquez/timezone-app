@@ -28,7 +28,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Link xml layout file with this activity (fragment)
-        View rootView = inflater.inflate(R.layout.fragment_app_settings,container,false);
+        View rootView = inflater.inflate(R.layout.fragment_app_settings, container, false);
 
         // Assign variables
         btn12HourFormat = rootView.findViewById(R.id.btnhhformat);
@@ -68,7 +68,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
         return rootView;
     }
 
-    private void assignDropDownMenuToSpinner(Spinner spinner){
+    private void assignDropDownMenuToSpinner(Spinner spinner) {
         // R.array.settings_select_city is defined in strings.xml
         adapter = ArrayAdapter.createFromResource(getActivity(), R.array.settings_select_city, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -88,7 +88,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
         // If a timePattern has already been stored then retrieve it and highlight the button instead of the default
         WidgetPreferences widgetPreferences = new WidgetPreferences(getActivity().getApplicationContext());
         if (widgetPreferences.isTimeKeyPresent()) {
-            if (widgetPreferences.getStoredTimePattern().equals( getString(R.string.hour_format_24))) {
+            if (widgetPreferences.getStoredTimePattern().equals(getString(R.string.hour_format_24))) {
                 buttonToHighlight = btn24HourFormat;
             }
         }
@@ -107,25 +107,25 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
         switch (parent.getId()) {
             case R.id.spinnerselectcity1:
                 selectedCity1 = parent.getItemAtPosition(position).toString();
-                setWidgetCitySettings(selectedCity1,getString(R.string.selected_city1_key));
+                setWidgetCitySettings(selectedCity1, getString(R.string.selected_city1_key));
                 break;
             case R.id.spinnerselectcity2:
                 selectedCity2 = parent.getItemAtPosition(position).toString();
-                setWidgetCitySettings(selectedCity2,getString(R.string.selected_city2_key));
+                setWidgetCitySettings(selectedCity2, getString(R.string.selected_city2_key));
                 break;
             case R.id.spinnerselectcity3:
                 selectedCity3 = parent.getItemAtPosition(position).toString();
-                setWidgetCitySettings(selectedCity3,getString(R.string.selected_city3_key));
+                setWidgetCitySettings(selectedCity3, getString(R.string.selected_city3_key));
                 break;
             case R.id.spinnerselectcity4:
                 selectedCity4 = parent.getItemAtPosition(position).toString();
-                setWidgetCitySettings(selectedCity4,getString(R.string.selected_city4_key));
+                setWidgetCitySettings(selectedCity4, getString(R.string.selected_city4_key));
                 break;
         }
-        Log.e("SETTINGS","selected city 1 is " + selectedCity1);
-        Log.e("SETTINGS","selected city 2 is " + selectedCity2);
-        Log.e("SETTINGS","selected city 3 is " + selectedCity3);
-        Log.e("SETTINGS","selected city 4 is " + selectedCity4);
+        Log.e("SETTINGS", "selected city 1 is " + selectedCity1);
+        Log.e("SETTINGS", "selected city 2 is " + selectedCity2);
+        Log.e("SETTINGS", "selected city 3 is " + selectedCity3);
+        Log.e("SETTINGS", "selected city 4 is " + selectedCity4);
     }
 
     @Override
@@ -133,15 +133,14 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
     }
 
 
-
     private void setColorOfButtonClicked(Button button) {
-        button.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.blue));
-        button.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+        button.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.blue));
+        button.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
     }
 
     private void setColorOfUnselectedButton(Button button) {
-        button.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.lightGrey));
-        button.setTextColor(ContextCompat.getColor(getActivity(),R.color.grey));
+        button.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.lightGrey));
+        button.setTextColor(ContextCompat.getColor(getActivity(), R.color.grey));
     }
 
 
