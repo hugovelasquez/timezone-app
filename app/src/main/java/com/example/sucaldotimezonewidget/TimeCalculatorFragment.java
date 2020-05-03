@@ -74,16 +74,17 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
     }
 
     private void calculateTime() {
-        Date selectedTime = getTimeOfTimePickerFromCity();
+        Calendar selectedTime = getTimeOfSelectedTimeAndCity();
+        int dayOfSelectedTime = selectedTime.get(Calendar.DAY_OF_YEAR);
         String otherTimezone = getString(R.string.nyc_timezone);
 
         cityName1.setText(getString(R.string.text_nyc));
-        cityTime1.setText(getFormattedTimeOfOtherCity(selectedTime, otherTimezone));
-        cityDay1.setText(getDayOfTheWeek(selectedTime, otherTimezone));
+        cityTime1.setText(getFormattedTimeOfOtherCity(selectedTime.getTime(), otherTimezone));
+        cityDay1.setText(getDayRelativeToSelectedTime(selectedTime.getTime(), otherTimezone, dayOfSelectedTime));
 
     }
 
-    private Date getTimeOfTimePickerFromCity() {
+    private Calendar getTimeOfSelectedTimeAndCity() {
         String selectedTimezone = getString(R.string.sydney_timezone);
 
         TimeZone.setDefault(TimeZone.getTimeZone(selectedTimezone));
@@ -91,7 +92,7 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
         calendar.set(Calendar.HOUR_OF_DAY, timePicker.getHour());
         calendar.set(Calendar.MINUTE, timePicker.getMinute());
 
-        return calendar.getTime();
+        return calendar;
     }
 
     private String getFormattedTimeOfOtherCity(Date selectedTime, String timezone) {
@@ -101,11 +102,25 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
         return timeFormat.format(selectedTime);
     }
 
-    private String getDayOfTheWeek(Date selectedTime, String timezone) {
+    private String getDayRelativeToSelectedTime(Date selectedTime, String timezone, int dayOfSelectedLocation) {
         TimeZone.setDefault(TimeZone.getTimeZone(timezone));
-        SimpleDateFormat timeFormat = new SimpleDateFormat(getString(R.string.day_format));
 
-        return timeFormat.format(selectedTime);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(selectedTime);
+        int dayOfOtherLocation = calendar.get(Calendar.DAY_OF_YEAR);
+
+        int dayDifference = dayOfOtherLocation - dayOfSelectedLocation;
+
+        String dayDifferenceText = "";
+
+        if (dayDifference == -1) {
+            dayDifferenceText = getString(R.string.day_diff_before_text);
+        }
+        if (dayDifference == 1) {
+            dayDifferenceText = getString(R.string.day_diff_after_text);
+        }
+
+        return dayDifferenceText;
     }
 
     @Override
