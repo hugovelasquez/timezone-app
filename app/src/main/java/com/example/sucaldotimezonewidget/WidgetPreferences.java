@@ -24,8 +24,12 @@ public class WidgetPreferences {
     }
     // Method for retrieving stored value
     public String getStoredTimePattern() {
-        return sharedPreferences.getString(context.getString(R.string.time_pattern_key),null);
+        if(isTimeKeyPresent()) {
+            return sharedPreferences.getString(context.getString(R.string.time_pattern_key),null);
+        }
+        return context.getString(R.string.hour_format_12);
     }
+
     // Shorter version of defining an If-loop (return only if true)
     public boolean isTimeKeyPresent() {
         return sharedPreferences.contains(context.getString(R.string.time_pattern_key));

@@ -25,13 +25,9 @@ public class TimezoneWidget extends AppWidgetProvider {
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
-        timePattern = context.getString(R.string.hour_format_12);  // Default value if nothing is clicked
-        datePattern = context.getString(R.string.date_format); // Default value
-        // Retrieve the stored time Pattern if stored and assign this to timePattern instead of default
         WidgetPreferences widgetPreferences = new WidgetPreferences(context);
-        if (widgetPreferences.isTimeKeyPresent()) {
-            timePattern = widgetPreferences.getStoredTimePattern();
-        }
+        timePattern = widgetPreferences.getStoredTimePattern();
+        datePattern = context.getString(R.string.date_format); // Default value
 
         // Link the xml layout file to this activity (WidgetProvider)
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.timezone_widget);
