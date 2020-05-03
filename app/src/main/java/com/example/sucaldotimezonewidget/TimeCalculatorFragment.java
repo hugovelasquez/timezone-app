@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
@@ -36,7 +37,7 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
 
     private TableLayout calculatedTimesTable;
 
-    private int row1Id;
+    private List<Integer> row1Ids = new ArrayList<>();
 
     @Nullable
     @Override
@@ -81,47 +82,62 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
         Calendar selectedTime = getTimeOfSelectedTimeAndCity();
         int dayOfSelectedTime = selectedTime.get(Calendar.DAY_OF_YEAR);
 
-        String otherTimezone = getString(R.string.nyc_timezone);
+        List<String> cities = getCitiesToCalculate();
 
-        String cityName = getString(R.string.text_nyc);
-        String timeOfCity = getFormattedTimeOfOtherCity(selectedTime.getTime(), otherTimezone);
-        String relativeDay = getDayRelativeToSelectedTime(selectedTime.getTime(), dayOfSelectedTime);
+        for (String city : cities) {
+            WidgetPreferences preferences = new WidgetPreferences(getContext());
+            String otherTimezone = preferences.getTimezoneOfCity(city);
 
-        TableRow tr = new TableRow(getContext());
-        row1Id = View.generateViewId();
-        tr.setId(row1Id);
-        tr.setLayoutParams(new TableRow.LayoutParams(
-                TableRow.LayoutParams.MATCH_PARENT,
-                TableRow.LayoutParams.WRAP_CONTENT));
+            String cityName = city;
+            String timeOfCity = getFormattedTimeOfOtherCity(selectedTime.getTime(), otherTimezone);
+            String relativeDay = getDayRelativeToSelectedTime(selectedTime.getTime(), dayOfSelectedTime);
+
+            TableRow tr = new TableRow(getContext());
+            int rowId = View.generateViewId();
+            row1Ids.add(rowId);
+            tr.setId(rowId);
+            tr.setLayoutParams(new TableRow.LayoutParams(
+                    TableRow.LayoutParams.MATCH_PARENT,
+                    TableRow.LayoutParams.WRAP_CONTENT));
 
 
-        TextView labelCity = new TextView(getContext());
-        labelCity.setText(cityName);
-        tr.addView(labelCity);
+            TextView labelCity = new TextView(getContext());
+            labelCity.setText(cityName);
+            tr.addView(labelCity);
 
-        TextView labelTime = new TextView(getContext());
-        labelTime.setText(timeOfCity);
-        tr.addView(labelTime);
+            TextView labelTime = new TextView(getContext());
+            labelTime.setText(timeOfCity);
+            tr.addView(labelTime);
 
-        TextView labelDayDifference = new TextView(getContext());
-        labelDayDifference.setText(relativeDay);
-        tr.addView(labelDayDifference);
+            TextView labelDayDifference = new TextView(getContext());
+            labelDayDifference.setText(relativeDay);
+            tr.addView(labelDayDifference);
 
-        calculatedTimesTable.addView(tr, new TableLayout.LayoutParams(
-                TableLayout.LayoutParams.MATCH_PARENT,
-                TableLayout.LayoutParams.WRAP_CONTENT));
+            calculatedTimesTable.addView(tr, new TableLayout.LayoutParams(
+                    TableLayout.LayoutParams.MATCH_PARENT,
+                    TableLayout.LayoutParams.WRAP_CONTENT));
+        }
 
     }
 
     private void removeCalculationRows(View rootView) {
-        TableRow row = rootView.findViewById(row1Id);
-        calculatedTimesTable.removeView(row);
+        for (int id : row1Ids) {
+            TableRow row = rootView.findViewById(id);
+            calculatedTimesTable.removeView(row);
+        }
+        row1Ids.clear();
     }
 
     private List<String> getCitiesToCalculate() {
         List<String> cities = Arrays.asList(getResources().getStringArray(R.array.cities));
-        cities.remove(selectedCity);
-        return cities;
+        // apk level does not support streams
+        List<String> citiesToCalc = new ArrayList<>();
+        for (String city : cities) {
+            if (!city.equals(selectedCity)) {
+                citiesToCalc.add(city);
+            }
+        }
+        return citiesToCalc;
     }
 
     private Calendar getTimeOfSelectedTimeAndCity() {
