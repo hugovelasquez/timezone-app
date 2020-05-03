@@ -21,12 +21,18 @@ public class TimezoneWidget extends AppWidgetProvider {
     private static String timePattern;
     private static String datePattern;
     private static Date currentDate;
+    private static String selectedCity1, selectedCity2, selectedCity3, selectedCity4;
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
         WidgetPreferences widgetPreferences = new WidgetPreferences(context);
         timePattern = widgetPreferences.getStoredTimePattern();
+        selectedCity1 = widgetPreferences.getStoredCitySelection(context.getString(R.string.selected_city1_key));
+        selectedCity2 = widgetPreferences.getStoredCitySelection(context.getString(R.string.selected_city2_key));
+        selectedCity3 = widgetPreferences.getStoredCitySelection(context.getString(R.string.selected_city3_key));
+        selectedCity4 = widgetPreferences.getStoredCitySelection(context.getString(R.string.selected_city4_key));
+
         datePattern = context.getString(R.string.date_format); // Default value
 
         // Link the xml layout file to this activity (WidgetProvider)

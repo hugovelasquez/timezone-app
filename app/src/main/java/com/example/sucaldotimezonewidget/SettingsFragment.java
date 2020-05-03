@@ -1,6 +1,7 @@
 package com.example.sucaldotimezonewidget;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
     private Button btn12HourFormat, btn24HourFormat;
     private Spinner spinnerCity1, spinnerCity2, spinnerCity3, spinnerCity4;
     private ArrayAdapter<CharSequence> adapter;
+    private String selectedCity1, selectedCity2, selectedCity3, selectedCity4;
 
     @Nullable
     @Override
@@ -49,7 +51,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
         btn12HourFormat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setWidgetSettings(getString(R.string.hour_format_12)); // R.string. references the strings defined in xml strings file
+                setWidgetTimeSettings(getString(R.string.hour_format_12)); // R.string. references the strings defined in xml strings file
                 setColorOfButtonClicked(btn12HourFormat);
                 setColorOfUnselectedButton(btn24HourFormat);
             }
@@ -58,17 +60,24 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
         btn24HourFormat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setWidgetSettings(getString(R.string.hour_format_24));
+                setWidgetTimeSettings(getString(R.string.hour_format_24));
                 setColorOfButtonClicked(btn24HourFormat);
                 setColorOfUnselectedButton(btn12HourFormat);
             }
         });
-
         return rootView;
     }
 
-    // Store constant values outside of the App (--> WidgetPreferences.java)
-    private void setWidgetSettings(String timePattern) {
+    private void assignDropDownMenuToSpinner(Spinner spinner){
+        // R.array.settings_select_city is defined in strings.xml
+        adapter = ArrayAdapter.createFromResource(getActivity(), R.array.settings_select_city, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+    }
+
+    // Store selected hour format outside of the App (--> WidgetPreferences.java)
+    private void setWidgetTimeSettings(String timePattern) {
         WidgetPreferences widgetPreferences = new WidgetPreferences(getActivity().getApplicationContext());
         widgetPreferences.setTimePatternToStore(timePattern);
     }
@@ -86,13 +95,44 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
         setColorOfButtonClicked(buttonToHighlight);
     }
 
-    private void assignDropDownMenuToSpinner(Spinner spinner){
-        // R.array.settings_select_city is defined in strings.xml
-        adapter = ArrayAdapter.createFromResource(getActivity(), R.array.settings_select_city, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+    // Method for storing selected cities (--> WidgetPreferences.java)
+    private void setWidgetCitySettings(String citySelection, String storeKey) {
+        WidgetPreferences widgetPreferences = new WidgetPreferences(getActivity().getApplicationContext());
+        widgetPreferences.setCitySelectionToStore(citySelection, storeKey);
     }
+
+    // Listeners for Spinners
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        switch (parent.getId()) {
+            case R.id.spinnerselectcity1:
+                selectedCity1 = parent.getItemAtPosition(position).toString();
+                setWidgetCitySettings(selectedCity1,getString(R.string.selected_city1_key));
+                break;
+            case R.id.spinnerselectcity2:
+                selectedCity2 = parent.getItemAtPosition(position).toString();
+                setWidgetCitySettings(selectedCity2,getString(R.string.selected_city2_key));
+                break;
+            case R.id.spinnerselectcity3:
+                selectedCity3 = parent.getItemAtPosition(position).toString();
+                setWidgetCitySettings(selectedCity3,getString(R.string.selected_city3_key));
+                break;
+            case R.id.spinnerselectcity4:
+                selectedCity4 = parent.getItemAtPosition(position).toString();
+                setWidgetCitySettings(selectedCity4,getString(R.string.selected_city4_key));
+                break;
+        }
+        Log.e("SETTINGS","selected city 1 is " + selectedCity1);
+        Log.e("SETTINGS","selected city 2 is " + selectedCity2);
+        Log.e("SETTINGS","selected city 3 is " + selectedCity3);
+        Log.e("SETTINGS","selected city 4 is " + selectedCity4);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+    }
+
+
 
     private void setColorOfButtonClicked(Button button) {
         button.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.blue));
@@ -105,14 +145,4 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
     }
 
 
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
 }

@@ -5,6 +5,11 @@
     <string name="configure">Configure</string>
     <string name="widget_settings">WIDGET_SETTINGS</string>
     <string name="time_pattern_key">TIME_PATTERN</string>
+    <string name="selected_city1_key">CITY_1</string>
+    <string name="selected_city2_key">CITY_2</string>
+    <string name="selected_city3_key">CITY_3</string>
+    <string name="selected_city4_key">CITY_4</string>
+
 
     <string name="sydney_timezone">Australia/Sydney</string>
     <string name="nyc_timezone">America/New_York</string>
@@ -32,12 +37,12 @@
     </string-array>
 
     <string-array name="settings_select_city">
-        <item>@string/text_none</item>
         <item>@string/text_sydney</item>
         <item>@string/text_nyc</item>
         <item>@string/text_sivar</item>
         <item>@string/text_bochum</item>
         <item>@string/text_toronto</item>
+        <item>@string/text_none</item>
     </string-array>
 
     <string name="introductory_text">Welcome to this App!</string>
