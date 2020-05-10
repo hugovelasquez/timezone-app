@@ -9,7 +9,9 @@ import android.util.Log;
 import android.widget.RemoteViews;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 
@@ -22,8 +24,8 @@ public class TimezoneWidget extends AppWidgetProvider {
     private static String timePattern;
     private static String datePattern;
     private static Date currentDate;
-    private static String selectedCity1, selectedCity2, selectedCity3, selectedCity4;
-    private static String timezone1, timezone2, timezone3, timezone4;
+    private static List<String> selectedCities = new ArrayList<>();
+    private static List<String> timezones = new ArrayList<>();
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
@@ -31,20 +33,22 @@ public class TimezoneWidget extends AppWidgetProvider {
         // Assignment of variables from SharedPreferences
         WidgetPreferences widgetPreferences = new WidgetPreferences(context);
         timePattern = widgetPreferences.getStoredTimePattern();
-        selectedCity1 = widgetPreferences.getStoredCitySelection(context.getString(R.string.selected_city1_key));
-        selectedCity2 = widgetPreferences.getStoredCitySelection(context.getString(R.string.selected_city2_key));
-        selectedCity3 = widgetPreferences.getStoredCitySelection(context.getString(R.string.selected_city3_key));
-        selectedCity4 = widgetPreferences.getStoredCitySelection(context.getString(R.string.selected_city4_key));
+        // Fill the string list selectedCities - remember: first item has index zero
+        selectedCities.add(widgetPreferences.getStoredCitySelection(context.getString(R.string.selected_city1_key)));
+        selectedCities.add(widgetPreferences.getStoredCitySelection(context.getString(R.string.selected_city2_key)));
+        selectedCities.add(widgetPreferences.getStoredCitySelection(context.getString(R.string.selected_city3_key)));
+        selectedCities.add(widgetPreferences.getStoredCitySelection(context.getString(R.string.selected_city4_key)));
         datePattern = context.getString(R.string.date_format); // Default value
         // Assignment of timezone based on city selection
-        timezone1 = getTimezoneOfSpinnerSelectedCities(selectedCity1,context);
-        timezone2 = getTimezoneOfSpinnerSelectedCities(selectedCity2,context);
-        timezone3 = getTimezoneOfSpinnerSelectedCities(selectedCity3,context);
-        timezone4 = getTimezoneOfSpinnerSelectedCities(selectedCity4,context);
-        Log.e("WIDGET", "selected timezone 1 is " + timezone1);
-        Log.e("WIDGET", "selected timezone 2 is " + timezone2);
-        Log.e("WIDGET", "selected timezone 3 is " + timezone3);
-        Log.e("WIDGET", "selected timezone 4 is " + timezone4);
+        for (String selectedCity : selectedCities) {
+            // Fill the string list timezones - remember: first item has index zero
+            timezones.add(getTimezoneOfSpinnerSelectedCities(selectedCity, context));
+        }
+
+        Log.e("WIDGET", "selected timezone 1 is " + timezones.get(0));
+        Log.e("WIDGET", "selected timezone 2 is " + timezones.get(1));
+        Log.e("WIDGET", "selected timezone 3 is " + timezones.get(2));
+        Log.e("WIDGET", "selected timezone 4 is " + timezones.get(3));
 
         // Link the xml layout file to this activity (WidgetProvider)
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.timezone_widget);
@@ -53,10 +57,10 @@ public class TimezoneWidget extends AppWidgetProvider {
         currentDate = new Date();
 
         // Call method to set Header, Time and Date of my desired locations
-        setHeaderTimeDateOfLocation(timezone1,selectedCity1,R.id.header_row1, R.id.time_row1,R.id.date_row1,views);
-        setHeaderTimeDateOfLocation(timezone2,selectedCity2,R.id.header_row2, R.id.time_row2,R.id.date_row2,views);
-        setHeaderTimeDateOfLocation(timezone3,selectedCity3,R.id.header_row3, R.id.time_row3,R.id.date_row3,views);
-        setHeaderTimeDateOfLocation(timezone4,selectedCity4,R.id.header_row4, R.id.time_row4,R.id.date_row4,views);
+        setHeaderTimeDateOfLocation(timezones.get(0),selectedCities.get(0),R.id.header_row1, R.id.time_row1,R.id.date_row1,views);
+        setHeaderTimeDateOfLocation(timezones.get(1),selectedCities.get(1),R.id.header_row2, R.id.time_row2,R.id.date_row2,views);
+        setHeaderTimeDateOfLocation(timezones.get(2),selectedCities.get(2),R.id.header_row3, R.id.time_row3,R.id.date_row3,views);
+        setHeaderTimeDateOfLocation(timezones.get(3),selectedCities.get(3),R.id.header_row4, R.id.time_row4,R.id.date_row4,views);
         Log.d("WIDGET", "finished setting time zones");
 
 
