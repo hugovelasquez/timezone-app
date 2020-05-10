@@ -39,7 +39,7 @@ public class TimezoneWidget extends AppWidgetProvider {
         // Assignment of timezone based on city selection
         for (String selectedCity : selectedCities) {
             // Fill the string list timezones - remember: first item has index zero
-            timezones.add(getTimezoneOfSpinnerSelectedCities(selectedCity, context));
+            timezones.add(widgetPreferences.getTimezoneOfCity(selectedCity));
         }
 
         // Link the xml layout file to this activity (WidgetProvider)
@@ -101,22 +101,6 @@ public class TimezoneWidget extends AppWidgetProvider {
         SimpleDateFormat dateFormat = new SimpleDateFormat(datePattern); //EEEE = day of the week, dd = day, MMM = month, yyyy = year
         String formattedDate = dateFormat.format(currentDate);
         return formattedDate;
-    }
-
-    private static String getTimezoneOfSpinnerSelectedCities (String selectedCity, Context context){
-        String selectedTimezone = "";
-        if (selectedCity.equals(context.getString(R.string.text_sydney))){
-            selectedTimezone = context.getString(R.string.sydney_timezone);
-        } else if (selectedCity.equals(context.getString(R.string.text_bochum))){
-            selectedTimezone = context.getString(R.string.bochum_timezone);
-        } else if (selectedCity.equals(context.getString(R.string.text_nyc))){
-            selectedTimezone = context.getString(R.string.nyc_timezone);
-        } else if (selectedCity.equals(context.getString(R.string.text_sivar))){
-            selectedTimezone = context.getString(R.string.sivar_timezone);
-        } else if (selectedCity.equals(context.getString(R.string.text_toronto))){
-            selectedTimezone = context.getString(R.string.toronto_timezone);
-        }
-        return selectedTimezone;
     }
 
     @Override
