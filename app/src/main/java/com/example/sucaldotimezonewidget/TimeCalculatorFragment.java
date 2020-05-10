@@ -27,6 +27,7 @@ import java.util.TimeZone;
 
 public class TimeCalculatorFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
+    // Definition of variables
     private Spinner spinner;
     private ArrayAdapter<CharSequence> adapter;
     private Button calculateBtn;
@@ -42,8 +43,10 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Link xml layout to this fragment
         final View rootView = inflater.inflate(R.layout.fragment_time_calculator, container, false);
 
+        // Assignment of variables
         widgetPreferences = new WidgetPreferences(getContext());
         timePattern = widgetPreferences.getStoredTimePattern();
 
@@ -53,9 +56,12 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
+        // Reference to TableLayout ID. This variable is used later to programmatically add rows to TableLayout.
         calculatedTimesTable = rootView.findViewById(R.id.calculated_times_table);
 
         calculateBtn = rootView.findViewById(R.id.calculate_btn);
+
+        // Button Listener
         calculateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,6 +69,7 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
             }
         });
 
+        // Set 12h or 24h format
         timePicker = rootView.findViewById(R.id.datePicker);
         if (timePattern.equals(getString(R.string.hour_format_24))) {
             timePicker.setIs24HourView(true);
@@ -77,12 +84,13 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
     }
 
     private void displayTimeOfCities(View rootView) {
+        // Delete current Table rows in order to start from zero again
         removeCalculationRows(rootView);
 
         Calendar selectedTime = getTimeOfSelectedTimeAndCity();
         int dayOfSelectedTime = selectedTime.get(Calendar.DAY_OF_YEAR);
 
-        List<String> cities = getCitiesToCalculate();
+        List<String> cities = getCitiesToConvertTo();
 
         for (String city : cities) {
             String timezone = widgetPreferences.getTimezoneOfCity(city);
@@ -90,6 +98,7 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
             String timeOfCity = getFormattedTimeOfOtherCity(selectedTime.getTime(), timezone);
             String relativeDay = getDayRelativeToSelectedTime(selectedTime.getTime(), dayOfSelectedTime);
 
+            // Create new table row and give it a random ID
             TableRow tr = new TableRow(getContext());
             int rowId = View.generateViewId();
             row1Ids.add(rowId);
@@ -98,8 +107,7 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
                     TableRow.LayoutParams.MATCH_PARENT,
                     TableRow.LayoutParams.WRAP_CONTENT));
 
-
-
+            // Create 3 TextViews in newly created row
             TextView labelCity = new TextView(getContext());
             setTextViewStyle(labelCity, 2, city);
             tr.addView(labelCity);
@@ -112,6 +120,7 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
             setTextViewStyle(labelDayDifference, 1, relativeDay);
             tr.addView(labelDayDifference);
 
+            // Add row to TableLayout
             calculatedTimesTable.addView(tr, new TableLayout.LayoutParams(
                     TableLayout.LayoutParams.MATCH_PARENT,
                     TableLayout.LayoutParams.WRAP_CONTENT));
@@ -134,7 +143,8 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
         textView.setText(text);
     }
 
-    private List<String> getCitiesToCalculate() {
+    // Remove the city that was selected as basis from the list of cities to convert the time to
+    private List<String> getCitiesToConvertTo() {
         List<String> cities = Arrays.asList(getResources().getStringArray(R.array.cities));
         // apk level does not support streams
         List<String> citiesToCalc = new ArrayList<>();
