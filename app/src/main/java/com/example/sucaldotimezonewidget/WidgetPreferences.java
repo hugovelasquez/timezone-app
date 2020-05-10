@@ -3,8 +3,12 @@ package com.example.sucaldotimezonewidget;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class WidgetPreferences {
 
@@ -68,5 +72,17 @@ public class WidgetPreferences {
     public String getTimezoneOfCity(String city) {
         // Map returns the value of the second column that corresponds to the input in the first column
         return locationMap.get(city);
+    }
+
+    public List<String> getSelectedCitiesList() {
+        // "Set" is a list that doesn't allow duplicates
+        Set<String> selectedCities = new HashSet<>();
+        selectedCities.add(getStoredCitySelection(context.getString(R.string.selected_city1_key)));
+        selectedCities.add(getStoredCitySelection(context.getString(R.string.selected_city2_key)));
+        selectedCities.add(getStoredCitySelection(context.getString(R.string.selected_city3_key)));
+        selectedCities.add(getStoredCitySelection(context.getString(R.string.selected_city4_key)));
+        // Remove text_none, because that means that no city was selected
+        selectedCities.remove(context.getString(R.string.text_none));
+        return new ArrayList<>(selectedCities);
     }
 }

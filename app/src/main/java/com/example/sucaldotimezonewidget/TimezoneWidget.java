@@ -33,22 +33,14 @@ public class TimezoneWidget extends AppWidgetProvider {
         // Assignment of variables from SharedPreferences
         WidgetPreferences widgetPreferences = new WidgetPreferences(context);
         timePattern = widgetPreferences.getStoredTimePattern();
-        // Fill the string list selectedCities - remember: first item has index zero
-        selectedCities.add(widgetPreferences.getStoredCitySelection(context.getString(R.string.selected_city1_key)));
-        selectedCities.add(widgetPreferences.getStoredCitySelection(context.getString(R.string.selected_city2_key)));
-        selectedCities.add(widgetPreferences.getStoredCitySelection(context.getString(R.string.selected_city3_key)));
-        selectedCities.add(widgetPreferences.getStoredCitySelection(context.getString(R.string.selected_city4_key)));
+        // get cities from SharedPreferences
+        selectedCities = widgetPreferences.getSelectedCitiesList();
         datePattern = context.getString(R.string.date_format); // Default value
         // Assignment of timezone based on city selection
         for (String selectedCity : selectedCities) {
             // Fill the string list timezones - remember: first item has index zero
             timezones.add(getTimezoneOfSpinnerSelectedCities(selectedCity, context));
         }
-
-        Log.e("WIDGET", "selected timezone 1 is " + timezones.get(0));
-        Log.e("WIDGET", "selected timezone 2 is " + timezones.get(1));
-        Log.e("WIDGET", "selected timezone 3 is " + timezones.get(2));
-        Log.e("WIDGET", "selected timezone 4 is " + timezones.get(3));
 
         // Link the xml layout file to this activity (WidgetProvider)
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.timezone_widget);
