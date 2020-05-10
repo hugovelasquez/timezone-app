@@ -43,8 +43,6 @@
                 android:text="@string/calculate_btn_text" />
         </TableRow>
 
-        <TableRow android:id="@+id/time_calculation_1"></TableRow>
-
     </TableLayout>
 
 </ScrollView>

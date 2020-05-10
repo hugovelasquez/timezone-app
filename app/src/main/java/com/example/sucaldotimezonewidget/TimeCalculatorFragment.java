@@ -99,16 +99,17 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
                     TableRow.LayoutParams.WRAP_CONTENT));
 
 
+
             TextView labelCity = new TextView(getContext());
-            labelCity.setText(city);
+            setTextViewStyle(labelCity, 2, city);
             tr.addView(labelCity);
 
             TextView labelTime = new TextView(getContext());
-            labelTime.setText(timeOfCity);
+            setTextViewStyle(labelTime, 2, timeOfCity);
             tr.addView(labelTime);
 
             TextView labelDayDifference = new TextView(getContext());
-            labelDayDifference.setText(relativeDay);
+            setTextViewStyle(labelDayDifference, 1, relativeDay);
             tr.addView(labelDayDifference);
 
             calculatedTimesTable.addView(tr, new TableLayout.LayoutParams(
@@ -123,6 +124,14 @@ public class TimeCalculatorFragment extends Fragment implements AdapterView.OnIt
             calculatedTimesTable.removeView(row);
         }
         row1Ids.clear();
+    }
+
+    private void setTextViewStyle(TextView textView, float weight, String text) {
+        TableRow.LayoutParams params = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, weight);
+        params.setMargins(25,20,5,0);
+        textView.setLayoutParams(params);
+        textView.setTextSize(17);
+        textView.setText(text);
     }
 
     private List<String> getCitiesToCalculate() {
