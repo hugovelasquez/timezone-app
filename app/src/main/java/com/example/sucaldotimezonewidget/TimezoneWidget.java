@@ -113,6 +113,8 @@ public class TimezoneWidget extends AppWidgetProvider {
             selectedTimezone = context.getString(R.string.nyc_timezone);
         } else if (selectedCity.equals(context.getString(R.string.text_sivar))){
             selectedTimezone = context.getString(R.string.sivar_timezone);
+        } else if (selectedCity.equals(context.getString(R.string.text_toronto))){
+            selectedTimezone = context.getString(R.string.toronto_timezone);
         }
         return selectedTimezone;
     }
