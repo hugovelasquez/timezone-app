@@ -25,7 +25,6 @@ public class TimezoneWidget extends AppWidgetProvider {
     private static String datePattern;
     private static Date currentDate;
     private static List<String> selectedCities = new ArrayList<>();
-    private static List<String> timezones = new ArrayList<>();
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
@@ -34,11 +33,7 @@ public class TimezoneWidget extends AppWidgetProvider {
         WidgetPreferences widgetPreferences = new WidgetPreferences(context);
         timePattern = widgetPreferences.getStoredTimePattern();
         selectedCities = widgetPreferences.getSelectedCitiesList();
-        // Assignment of timezone based on city selection
-        for (String selectedCity : selectedCities) {
-            // Fill the string list timezones - remember: first item has index zero
-            timezones.add(widgetPreferences.getTimezoneOfCity(selectedCity));
-        }
+
         // Default value for date format
         datePattern = context.getString(R.string.date_format);
 
@@ -56,7 +51,7 @@ public class TimezoneWidget extends AppWidgetProvider {
 
         // Set widget data according to selected cities in settings
         // Widget does not allow dynamic adding of rows, therefore this static approach
-        for(int i = 0; i < selectedCities.size(); i++) {
+        for (int i = 0; i < selectedCities.size(); i++) {
             int header = 0;
             int time = 0;
             int date = 0;
@@ -64,38 +59,41 @@ public class TimezoneWidget extends AppWidgetProvider {
                 header = R.id.header_row1;
                 time = R.id.time_row1;
                 date = R.id.date_row1;
-            } if (i == 1) {
+            }
+            if (i == 1) {
                 header = R.id.header_row2;
                 time = R.id.time_row2;
                 date = R.id.date_row2;
-            } if (i == 2) {
+            }
+            if (i == 2) {
                 header = R.id.header_row3;
                 time = R.id.time_row3;
                 date = R.id.date_row3;
-            } if (i == 3) {
+            }
+            if (i == 3) {
                 header = R.id.header_row4;
                 time = R.id.time_row4;
                 date = R.id.date_row4;
             }
-            setHeaderTimeDateOfLocation(timezones.get(i),selectedCities.get(i),header,time,date,views);
-            Log.e("WIDGET","Index: " + i + " City: " + selectedCities.get(i) + " Timezone: " + timezones.get(i));
+            String timezone = widgetPreferences.getTimezoneOfCity(selectedCities.get(i));
+            setHeaderTimeDateOfLocation(timezone, selectedCities.get(i), header, time, date, views);
         }
 
         /*
         CODE FOR REFRESHING INFORMATION
          */
         // Create a new intent that links to this java class
-        Intent intentUpdate = new Intent(context,TimezoneWidget.class);
+        Intent intentUpdate = new Intent(context, TimezoneWidget.class);
         // set the update action to the intent. The app knows it has to launch an update
         intentUpdate.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
         // Get the app Id into a new array because the update needs it
-        int [] idArray = new int[] {appWidgetId};
+        int[] idArray = new int[]{appWidgetId};
         // Pass on the app id with the intent
-        intentUpdate.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,idArray);
+        intentUpdate.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, idArray);
         // "Transform" the intent into a PendingIntent (widget only works with Pending Intents...)
-        PendingIntent pendingUpdate = PendingIntent.getBroadcast(context,appWidgetId,intentUpdate,PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingUpdate = PendingIntent.getBroadcast(context, appWidgetId, intentUpdate, PendingIntent.FLAG_UPDATE_CURRENT);
         // Assign the Pending Intent to the xml refresh button
-        views.setOnClickPendingIntent(R.id.refresh_button,pendingUpdate);
+        views.setOnClickPendingIntent(R.id.refresh_button, pendingUpdate);
         /*
         END OF CODE FOR REFRESHING INFORMATION
          */
@@ -104,13 +102,13 @@ public class TimezoneWidget extends AppWidgetProvider {
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
-    private static void cleanWidgetTextViews (int headerViewId, int timeViewId, int dateViewId, RemoteViews views){
+    private static void cleanWidgetTextViews(int headerViewId, int timeViewId, int dateViewId, RemoteViews views) {
         views.setTextViewText(headerViewId, "");
         views.setTextViewText(timeViewId, "");
         views.setTextViewText(dateViewId, "");
     }
 
-    private static void setHeaderTimeDateOfLocation(String timezone, String selectedCity, int headerViewId, int timeViewId, int dateViewId, RemoteViews views){
+    private static void setHeaderTimeDateOfLocation(String timezone, String selectedCity, int headerViewId, int timeViewId, int dateViewId, RemoteViews views) {
         views.setTextViewText(headerViewId, selectedCity);
         String locationTime = getTimeOfLocationFormatted(timezone);
         views.setTextViewText(timeViewId, locationTime);
@@ -138,7 +136,7 @@ public class TimezoneWidget extends AppWidgetProvider {
         // There may be multiple widgets active, so update all of them
         for (int appWidgetId : appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId);
-                    }
+        }
     }
 
     @Override
