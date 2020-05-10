@@ -77,15 +77,18 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
         // If spinner selections have already been stored then retrieve them and use them
         int selectedCity = 0;
         WidgetPreferences widgetPreferences = new WidgetPreferences(getActivity().getApplicationContext());
-        if (widgetPreferences.isCityKeyPresent(cityKey)){
+        if (widgetPreferences.isCityKeyPresent(cityKey)) {
             if (widgetPreferences.getStoredCitySelection(cityKey).equals(getString(R.string.text_sydney))) {
-            selectedCity = 0;
-            } else if (widgetPreferences.getStoredCitySelection(cityKey).equals(getString(R.string.text_nyc))){
+                selectedCity = 0;
+            } else if (widgetPreferences.getStoredCitySelection(cityKey).equals(getString(R.string.text_nyc))) {
                 selectedCity = 1;
-            } else if (widgetPreferences.getStoredCitySelection(cityKey).equals(getString(R.string.text_sivar))){
+            } else if (widgetPreferences.getStoredCitySelection(cityKey).equals(getString(R.string.text_sivar))) {
                 selectedCity = 2;
-            } else if (widgetPreferences.getStoredCitySelection(cityKey).equals(getString(R.string.text_bochum))){
-            selectedCity = 3;}
+            } else if (widgetPreferences.getStoredCitySelection(cityKey).equals(getString(R.string.text_bochum))) {
+                selectedCity = 3;
+            } else if (widgetPreferences.getStoredCitySelection(cityKey).equals(getString(R.string.text_toronto))) {
+                selectedCity = 4;
+            }
         }
         spinner.setSelection(selectedCity);
     }
