@@ -48,13 +48,38 @@ public class TimezoneWidget extends AppWidgetProvider {
         // Android calculates current Date
         currentDate = new Date();
 
-        // Call method to set Header, Time and Date of my desired locations
-        setHeaderTimeDateOfLocation(timezones.get(0),selectedCities.get(0),R.id.header_row1, R.id.time_row1,R.id.date_row1,views);
-        setHeaderTimeDateOfLocation(timezones.get(1),selectedCities.get(1),R.id.header_row2, R.id.time_row2,R.id.date_row2,views);
-        setHeaderTimeDateOfLocation(timezones.get(2),selectedCities.get(2),R.id.header_row3, R.id.time_row3,R.id.date_row3,views);
-        setHeaderTimeDateOfLocation(timezones.get(3),selectedCities.get(3),R.id.header_row4, R.id.time_row4,R.id.date_row4,views);
-        Log.d("WIDGET", "finished setting time zones");
+        // Clean widget before setting new data
+        cleanWidgetTextViews(R.id.header_row1, R.id.time_row1, R.id.date_row1, views);
+        cleanWidgetTextViews(R.id.header_row2, R.id.time_row2, R.id.date_row2, views);
+        cleanWidgetTextViews(R.id.header_row3, R.id.time_row3, R.id.date_row3, views);
+        cleanWidgetTextViews(R.id.header_row4, R.id.time_row4, R.id.date_row4, views);
 
+        // Set widget data according to selected cities in settings
+        // Widget does not allow dynamic adding of rows, therefore this static approach
+        for(int i = 0; i < selectedCities.size(); i++) {
+            int header = 0;
+            int time = 0;
+            int date = 0;
+            if (i == 0) {
+                header = R.id.header_row1;
+                time = R.id.time_row1;
+                date = R.id.date_row1;
+            } if (i == 1) {
+                header = R.id.header_row2;
+                time = R.id.time_row2;
+                date = R.id.date_row2;
+            } if (i == 2) {
+                header = R.id.header_row3;
+                time = R.id.time_row3;
+                date = R.id.date_row3;
+            } if (i == 3) {
+                header = R.id.header_row4;
+                time = R.id.time_row4;
+                date = R.id.date_row4;
+            }
+            setHeaderTimeDateOfLocation(timezones.get(i),selectedCities.get(i),header,time,date,views);
+            Log.e("WIDGET","Index: " + i + " City: " + selectedCities.get(i) + " Timezone: " + timezones.get(i));
+        }
 
         /*
         CODE FOR REFRESHING INFORMATION
@@ -79,6 +104,11 @@ public class TimezoneWidget extends AppWidgetProvider {
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
+    private static void cleanWidgetTextViews (int headerViewId, int timeViewId, int dateViewId, RemoteViews views){
+        views.setTextViewText(headerViewId, "");
+        views.setTextViewText(timeViewId, "");
+        views.setTextViewText(dateViewId, "");
+    }
 
     private static void setHeaderTimeDateOfLocation(String timezone, String selectedCity, int headerViewId, int timeViewId, int dateViewId, RemoteViews views){
         views.setTextViewText(headerViewId, selectedCity);
