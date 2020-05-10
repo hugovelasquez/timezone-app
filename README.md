@@ -1,11 +1,15 @@
-# Timezone Widget for Android
-Android app with widget that displays the time of cities around the world. 
+# Timezone App for Android
+Android app with widget that displays the current time of cities around the world.
+Up to four cities can be displayed at the same time, either in 12-hour or 24-hour format.
+Separate time calculator function to calculate time for the different cities at any given moment.
+App works from API level 23.
 
-Up to four cities can be displayed at the same time.
+# Add new cities to the code
+- strings.xml : add new city name, timezone, and expand string array.
+- SettingsFragment.java : expand method assignDropDownMenuToSpinner
+- WidgetPreferences.java : expand locationMap
 
-Time calculator to calculate time for the different cities at any given moment
-
-# Technology used
+# Technologies used
 - Android Studio
 - Java
 
