@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -79,7 +80,7 @@ public class WidgetPreferences {
         selectedCities.add(getStoredCitySelection(context.getString(R.string.selected_city3_key)));
         selectedCities.add(getStoredCitySelection(context.getString(R.string.selected_city4_key)));
         // Remove text_none, because that means that no city was selected
-        selectedCities.remove(context.getString(R.string.text_none));
+        selectedCities.removeAll(Collections.singleton(context.getString(R.string.text_none)));
         return selectedCities;
     }
 }
