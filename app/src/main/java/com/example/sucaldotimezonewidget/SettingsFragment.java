@@ -74,7 +74,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
         // If spinner selections have already been stored then retrieve them and use them
-        int selectedCity = 0;
+        int selectedCity = 5;
         WidgetPreferences widgetPreferences = new WidgetPreferences(getActivity().getApplicationContext());
         if (widgetPreferences.isCityKeyPresent(cityKey)) {
             if (widgetPreferences.getStoredCitySelection(cityKey).equals(getString(R.string.text_sydney))) {

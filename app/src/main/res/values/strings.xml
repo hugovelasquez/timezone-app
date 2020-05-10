@@ -39,9 +39,9 @@
     </string-array>
 
     <string name="introductory_text">Welcome to this App!</string>
-    <string name="explanation_text">It calculates and displays the time of Sydney, New York City, San Salvador and Bochum.</string>
+    <string name="explanation_text">It calculates and displays the time of up to 4 different cities. You can choose between Sydney, New York City, San Salvador, Toronto and Bochum.</string>
     <string name="settings_text">Please define the settings by clicking on the menu icon in the navigation bar. Then just enjoy!</string>
-    <string name="author_text">- Created by Hugo and Sofia, 2020 - \n v3.0</string>
+    <string name="author_text">- Created by Hugo and Sofia, 2020 - \n v4.0</string>
     <string name="icon_text">Icon made by Freepik from www.flaticon.com</string>
     <string name="time_format_text">Please choose a time format:</string>
     <string name="select_cities_text">Please choose cities:</string>
