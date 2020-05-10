@@ -69,8 +69,8 @@
 
     <string name="convert_time_text">Input the time you want to convert:</string>
     <string name="calculate_btn_text">Calculate time</string>
-    <string name="day_diff_before_text">-1 day</string>
-    <string name="day_diff_after_text">+1 day</string>
+    <string name="day_diff_before_text">- 1 day</string>
+    <string name="day_diff_after_text">+ 1 day</string>
 
 
 

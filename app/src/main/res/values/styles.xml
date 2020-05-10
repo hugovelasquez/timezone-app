@@ -31,13 +31,16 @@
         <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="HourFormatBtnStyle">
+    <style name="ButtonStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">60dp</item>
         <item name="android:layout_margin">20dp</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textSize">20sp</item>
         <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="HourFormatBtnStyle" parent="ButtonStyle">
         <item name="android:textColor">@color/grey</item>
         <item name="android:colorBackground">@color/lightGrey</item>
     </style>
@@ -50,6 +53,10 @@
         <item name="android:layout_weight">1</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="TimeCalcHeaderStyle" parent="ExplanationTextStyle">
+        <item name="android:layout_margin">0dp</item>
     </style>
 
     <style name="SpinnerStyle">

@@ -14,7 +14,7 @@
 
             <TextView
                 android:id="@+id/txtwelcome"
-                style="@style/ExplanationTextStyle"
+                style="@style/TimeCalcHeaderStyle"
                 android:text="@string/convert_time_text" />
         </TableRow>
 
@@ -22,15 +22,16 @@
 
             <Spinner
                 android:id="@+id/spinner"
-                android:layout_width="150dp"
+                android:layout_width="0dp"
                 android:layout_height="45dp"
                 android:layout_weight="1"
                 android:textAlignment="center" />
 
             <TimePicker
                 android:id="@+id/datePicker"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:timePickerMode="spinner" />
 
         </TableRow>
@@ -39,7 +40,7 @@
 
             <Button
                 android:id="@+id/calculate_btn"
-                style="@style/HourFormatBtnStyle"
+                style="@style/ButtonStyle"
                 android:text="@string/calculate_btn_text" />
         </TableRow>
 
