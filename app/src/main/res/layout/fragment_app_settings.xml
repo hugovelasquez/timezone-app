@@ -1,95 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ScrollViewStyle"
+    android:fillViewport="true">
 
-    <TableRow android:layout_marginTop="50dp">
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
 
-        <TextView
-            android:id="@+id/txtchooseformat"
-            style="@style/ExplanationTextStyle"
-            android:text="@string/time_format_text" />
-    </TableRow>
+        <TableRow android:layout_marginTop="50dp">
 
-    <TableRow >
+            <TextView
+                android:id="@+id/txtchooseformat"
+                style="@style/ExplanationTextStyle"
+                android:text="@string/time_format_text" />
+        </TableRow>
 
-        <Button
-            android:id="@+id/btnhhformat"
-            style="@style/HourFormatBtnStyle"
-            android:text="@string/settings_btn12h" />
+        <TableRow >
 
-        <Button
-            android:id="@+id/btnHHformat"
-            style="@style/HourFormatBtnStyle"
-            android:text="@string/settings_btn24h" />
-    </TableRow>
+            <Button
+                android:id="@+id/btnhhformat"
+                style="@style/HourFormatBtnStyle"
+                android:text="@string/settings_btn12h" />
 
-    <TableRow android:layout_marginTop="25dp">
+            <Button
+                android:id="@+id/btnHHformat"
+                style="@style/HourFormatBtnStyle"
+                android:text="@string/settings_btn24h" />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="25dp">
         
-        <TextView
-            android:id="@+id/txtchoosecities"
-            style="@style/ExplanationTextStyle"
-            android:text="@string/select_cities_text"/>
+            <TextView
+                android:id="@+id/txtchoosecities"
+                style="@style/ExplanationTextStyle"
+                android:text="@string/select_cities_text"/>
 
-    </TableRow>
+        </TableRow>
 
-    <TableRow android:layout_marginTop="5dp">
+        <TableRow android:layout_marginTop="5dp">
 
-        <TextView
-            android:id="@+id/txtcity1"
-            style="@style/ExplanationTextStyle"
-            android:text="@string/text_select_city_1"/>
+            <TextView
+                android:id="@+id/txtcity1"
+                style="@style/ExplanationTextStyle"
+                android:text="@string/text_select_city_1"/>
 
-        <Spinner
-            android:id="@+id/spinnerselectcity1"
-            style="@style/SpinnerStyle"
-            />
+            <Spinner
+                android:id="@+id/spinnerselectcity1"
+                style="@style/SpinnerStyle"
+                />
 
-    </TableRow>
+        </TableRow>
 
-    <TableRow android:layout_marginTop="5dp">
+        <TableRow android:layout_marginTop="5dp">
 
-        <TextView
-            android:id="@+id/txtcity2"
-            style="@style/ExplanationTextStyle"
-            android:text="@string/text_select_city_2"/>
+            <TextView
+                android:id="@+id/txtcity2"
+                style="@style/ExplanationTextStyle"
+                android:text="@string/text_select_city_2"/>
 
-        <Spinner
-            android:id="@+id/spinnerselectcity2"
-            style="@style/SpinnerStyle"
-            />
+            <Spinner
+                android:id="@+id/spinnerselectcity2"
+                style="@style/SpinnerStyle"
+                />
 
-    </TableRow>
+        </TableRow>
 
-    <TableRow android:layout_marginTop="5dp">
+        <TableRow android:layout_marginTop="5dp">
 
-        <TextView
-            android:id="@+id/txtcity3"
-            style="@style/ExplanationTextStyle"
-            android:text="@string/text_select_city_3"/>
+            <TextView
+                android:id="@+id/txtcity3"
+                style="@style/ExplanationTextStyle"
+                android:text="@string/text_select_city_3"/>
 
-        <Spinner
-            android:id="@+id/spinnerselectcity3"
-            style="@style/SpinnerStyle"
-            />
+            <Spinner
+                android:id="@+id/spinnerselectcity3"
+                style="@style/SpinnerStyle"
+                />
 
-    </TableRow>
+        </TableRow>
 
-    <TableRow android:layout_marginTop="5dp">
+        <TableRow android:layout_marginTop="5dp">
 
-        <TextView
-            android:id="@+id/txtcity4"
-            style="@style/ExplanationTextStyle"
-            android:text="@string/text_select_city_4"/>
+            <TextView
+                android:id="@+id/txtcity4"
+                style="@style/ExplanationTextStyle"
+                android:text="@string/text_select_city_4"/>
 
-        <Spinner
-            android:id="@+id/spinnerselectcity4"
-            style="@style/SpinnerStyle"
-            />
+            <Spinner
+                android:id="@+id/spinnerselectcity4"
+                style="@style/SpinnerStyle"
+                />
 
-    </TableRow>
+        </TableRow>
 
+    </TableLayout>
 
-</TableLayout>
+</ScrollView>

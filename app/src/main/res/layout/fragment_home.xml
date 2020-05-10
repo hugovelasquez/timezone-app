@@ -1,49 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ScrollViewStyle"
+    android:fillViewport="true">
 
-    <TableRow android:layout_marginTop="50dp">
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <TableRow android:layout_marginTop="50dp">
 
         <TextView
             android:id="@+id/txtwelcome"
             style="@style/ExplanationTextStyle"
             android:textStyle="bold"
             android:text="@string/introductory_text" />
-    </TableRow>
+        </TableRow>
 
-    <TableRow>
+        <TableRow>
 
         <TextView
             android:id="@+id/txtexplanation"
             style="@style/ExplanationTextStyle"
             android:text="@string/explanation_text" />
-    </TableRow>
+        </TableRow>
 
-    <TableRow>
+        <TableRow>
 
         <TextView
             android:id="@+id/txtchooseformat"
             style="@style/ExplanationTextStyle"
             android:text="@string/settings_text" />
-    </TableRow>
+        </TableRow>
 
-    <TableRow>
+        <TableRow>
 
         <TextView
             android:id="@+id/txtcredits"
             style="@style/ExplanationTextStyle"
             android:text="@string/author_text" />
-    </TableRow>
+        </TableRow>
 
-    <TableRow>
+        <TableRow>
 
         <TextView
             android:id="@+id/txticoncredits"
             style="@style/ExplanationTextStyle"
             android:text="@string/icon_text" />
-    </TableRow>
+        </TableRow>
 
-</TableLayout>
+    </TableLayout>
+
+</ScrollView>
