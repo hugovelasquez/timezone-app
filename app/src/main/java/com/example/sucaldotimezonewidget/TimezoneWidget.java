@@ -18,15 +18,17 @@ import java.util.TimeZone;
  */
 public class TimezoneWidget extends AppWidgetProvider {
 
+    // Definition of variables
     private static String timePattern;
     private static String datePattern;
     private static Date currentDate;
     private static String selectedCity1, selectedCity2, selectedCity3, selectedCity4;
+    private static String timezone1, timezone2, timezone3, timezone4;
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
-        // Definition of variables from SharedPreferences
+        // Assignment of variables from SharedPreferences
         WidgetPreferences widgetPreferences = new WidgetPreferences(context);
         timePattern = widgetPreferences.getStoredTimePattern();
         selectedCity1 = widgetPreferences.getStoredCitySelection(context.getString(R.string.selected_city1_key));
@@ -34,17 +36,27 @@ public class TimezoneWidget extends AppWidgetProvider {
         selectedCity3 = widgetPreferences.getStoredCitySelection(context.getString(R.string.selected_city3_key));
         selectedCity4 = widgetPreferences.getStoredCitySelection(context.getString(R.string.selected_city4_key));
         datePattern = context.getString(R.string.date_format); // Default value
+        // Assignment of timezone based on city selection
+        timezone1 = getTimezoneOfSpinnerSelectedCities(selectedCity1,context);
+        timezone2 = getTimezoneOfSpinnerSelectedCities(selectedCity2,context);
+        timezone3 = getTimezoneOfSpinnerSelectedCities(selectedCity3,context);
+        timezone4 = getTimezoneOfSpinnerSelectedCities(selectedCity4,context);
+        Log.e("WIDGET", "selected timezone 1 is " + timezone1);
+        Log.e("WIDGET", "selected timezone 2 is " + timezone2);
+        Log.e("WIDGET", "selected timezone 3 is " + timezone3);
+        Log.e("WIDGET", "selected timezone 4 is " + timezone4);
 
         // Link the xml layout file to this activity (WidgetProvider)
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.timezone_widget);
 
         // Android calculates current Date
         currentDate = new Date();
-        // Call method to set Time and Date of my desired locations
-        setHeaderTimeDateOfLocation(context.getString(R.string.sydney_timezone),selectedCity1,R.id.header_row1, R.id.time_row1,R.id.date_row1,views);
-        setHeaderTimeDateOfLocation(context.getString(R.string.bochum_timezone),selectedCity2,R.id.header_row2, R.id.time_row2,R.id.date_row2,views);
-        setHeaderTimeDateOfLocation(context.getString(R.string.nyc_timezone),selectedCity3,R.id.header_row3, R.id.time_row3,R.id.date_row3,views);
-        setHeaderTimeDateOfLocation(context.getString(R.string.sivar_timezone),selectedCity4,R.id.header_row4, R.id.time_row4,R.id.date_row4,views);
+
+        // Call method to set Header, Time and Date of my desired locations
+        setHeaderTimeDateOfLocation(timezone1,selectedCity1,R.id.header_row1, R.id.time_row1,R.id.date_row1,views);
+        setHeaderTimeDateOfLocation(timezone2,selectedCity2,R.id.header_row2, R.id.time_row2,R.id.date_row2,views);
+        setHeaderTimeDateOfLocation(timezone3,selectedCity3,R.id.header_row3, R.id.time_row3,R.id.date_row3,views);
+        setHeaderTimeDateOfLocation(timezone4,selectedCity4,R.id.header_row4, R.id.time_row4,R.id.date_row4,views);
         Log.d("WIDGET", "finished setting time zones");
 
 
@@ -95,6 +107,19 @@ public class TimezoneWidget extends AppWidgetProvider {
         return formattedDate;
     }
 
+    private static String getTimezoneOfSpinnerSelectedCities (String selectedCity, Context context){
+        String selectedTimezone = "";
+        if (selectedCity.equals(context.getString(R.string.text_sydney))){
+            selectedTimezone = context.getString(R.string.sydney_timezone);
+        } else if (selectedCity.equals(context.getString(R.string.text_bochum))){
+            selectedTimezone = context.getString(R.string.bochum_timezone);
+        } else if (selectedCity.equals(context.getString(R.string.text_nyc))){
+            selectedTimezone = context.getString(R.string.nyc_timezone);
+        } else if (selectedCity.equals(context.getString(R.string.text_sivar))){
+            selectedTimezone = context.getString(R.string.sivar_timezone);
+        }
+        return selectedTimezone;
+    }
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
