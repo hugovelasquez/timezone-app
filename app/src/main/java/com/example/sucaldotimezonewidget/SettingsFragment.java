@@ -87,6 +87,8 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
                 selectedCity = 3;
             } else if (widgetPreferences.getStoredCitySelection(cityKey).equals(getString(R.string.text_toronto))) {
                 selectedCity = 4;
+            } else if (widgetPreferences.getStoredCitySelection(cityKey).equals(getString(R.string.text_none))) {
+                selectedCity = 5;
             }
         }
         spinner.setSelection(selectedCity);

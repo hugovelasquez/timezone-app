@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/refresh_button"
-        android:layout_width="22sp"
-        android:layout_height="22sp"
+        android:layout_width="23sp"
+        android:layout_height="23sp"
         android:layout_columnSpan="2"
         android:layout_marginLeft="10sp"
         android:layout_marginTop="5sp"

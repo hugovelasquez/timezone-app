@@ -33,14 +33,14 @@ public class TimezoneWidget extends AppWidgetProvider {
         // Assignment of variables from SharedPreferences
         WidgetPreferences widgetPreferences = new WidgetPreferences(context);
         timePattern = widgetPreferences.getStoredTimePattern();
-        // get cities from SharedPreferences
         selectedCities = widgetPreferences.getSelectedCitiesList();
-        datePattern = context.getString(R.string.date_format); // Default value
         // Assignment of timezone based on city selection
         for (String selectedCity : selectedCities) {
             // Fill the string list timezones - remember: first item has index zero
             timezones.add(widgetPreferences.getTimezoneOfCity(selectedCity));
         }
+        // Default value for date format
+        datePattern = context.getString(R.string.date_format);
 
         // Link the xml layout file to this activity (WidgetProvider)
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.timezone_widget);
