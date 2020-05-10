@@ -29,14 +29,6 @@
     <string name="text_toronto">Toronto</string>
     <string name="text_none"> - None - </string>
 
-    <string-array name="cities">
-    <item>@string/text_sydney</item>
-    <item>@string/text_nyc</item>
-    <item>@string/text_sivar</item>
-    <item>@string/text_bochum</item>
-    <item>@string/text_toronto</item>
-    </string-array>
-
     <string-array name="settings_select_city">
         <item>@string/text_sydney</item>
         <item>@string/text_nyc</item>

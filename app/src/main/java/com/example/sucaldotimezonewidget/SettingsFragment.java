@@ -1,7 +1,6 @@
 package com.example.sucaldotimezonewidget;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,7 +95,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
     // Store selected hour format outside of the App (--> WidgetPreferences.java)
     private void setWidgetTimeSettings(String timePattern) {
         WidgetPreferences widgetPreferences = new WidgetPreferences(getActivity().getApplicationContext());
-        widgetPreferences.setTimePatternToStore(timePattern);
+        widgetPreferences.storeTimePattern(timePattern);
     }
 
     // Default Button Configuration: this method is used only each time the App is launched
@@ -115,7 +114,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
     // Method for storing selected cities (--> WidgetPreferences.java)
     private void setWidgetCitySettings(String citySelection, String storeKey) {
         WidgetPreferences widgetPreferences = new WidgetPreferences(getActivity().getApplicationContext());
-        widgetPreferences.setCitySelectionToStore(citySelection, storeKey);
+        widgetPreferences.storeCitySelection(citySelection, storeKey);
     }
 
     // Listeners for Spinners
