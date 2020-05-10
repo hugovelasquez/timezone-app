@@ -75,14 +75,13 @@ public class WidgetPreferences {
     }
 
     public List<String> getSelectedCitiesList() {
-        // "Set" is a list that doesn't allow duplicates
-        Set<String> selectedCities = new HashSet<>();
+        List<String> selectedCities = new ArrayList<>();
         selectedCities.add(getStoredCitySelection(context.getString(R.string.selected_city1_key)));
         selectedCities.add(getStoredCitySelection(context.getString(R.string.selected_city2_key)));
         selectedCities.add(getStoredCitySelection(context.getString(R.string.selected_city3_key)));
         selectedCities.add(getStoredCitySelection(context.getString(R.string.selected_city4_key)));
         // Remove text_none, because that means that no city was selected
         selectedCities.remove(context.getString(R.string.text_none));
-        return new ArrayList<>(selectedCities);
+        return selectedCities;
     }
 }
