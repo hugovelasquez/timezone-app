@@ -4,11 +4,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class WidgetPreferences {
 
@@ -32,14 +31,14 @@ public class WidgetPreferences {
     }
 
     // Method for storing time Pattern (Key for storing is R.string.time_pattern_key)
-    public void setTimePatternToStore(String timePattern) {
+    public void storeTimePattern(String timePattern) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(context.getString(R.string.time_pattern_key), timePattern);
         editor.commit();
     }
 
     // Method for storing city selection (Key for storing is now an input for the method)
-    public void setCitySelectionToStore(String citySelection, String storeKey) {
+    public void storeCitySelection(String citySelection, String storeKey) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(storeKey, citySelection);
         editor.commit();
@@ -81,7 +80,7 @@ public class WidgetPreferences {
         selectedCities.add(getStoredCitySelection(context.getString(R.string.selected_city3_key)));
         selectedCities.add(getStoredCitySelection(context.getString(R.string.selected_city4_key)));
         // Remove text_none, because that means that no city was selected
-        selectedCities.remove(context.getString(R.string.text_none));
+        selectedCities.removeAll(Collections.singleton(context.getString(R.string.text_none)));
         return selectedCities;
     }
 }
