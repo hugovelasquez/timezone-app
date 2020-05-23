@@ -5,9 +5,9 @@ Separate time calculator function to calculate time for the different cities at 
 App works from API level 22.
 
 # Add new cities to the code
-- strings.xml : add new city name, timezone, and expand string array.
-- SettingsFragment.java : expand method assignDropDownMenuToSpinner
-- WidgetPreferences.java : expand locationMap
+- `strings.xml` : add new city name, timezone, and expand string array.
+- `SettingsFragment.java` : expand method assignDropDownMenuToSpinner
+- `WidgetPreferences.java` : expand locationMap
 
 # Technologies used
 - Android Studio
