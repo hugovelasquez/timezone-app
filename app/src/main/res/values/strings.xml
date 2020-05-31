@@ -55,6 +55,7 @@
     <string name="navbar_home">Home</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navbar_timer">Tofis Timer</string>
 
     <string name="settings_btn12h">12h-format</string>
     <string name="settings_btn24h">24h-format</string>
@@ -64,6 +65,9 @@
     <string name="day_diff_before_text">- 1 day</string>
     <string name="day_diff_after_text">+ 1 day</string>
 
+    <string name="timer_start">Start</string>
+    <string name="timer_stop">Stop</string>
+    <string name="timer_reset">Reset</string>
 
 
 </resources>

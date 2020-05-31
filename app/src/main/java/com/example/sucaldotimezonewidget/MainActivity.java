@@ -41,15 +41,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // Show Home as a default
         if (savedInstanceState == null) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new HomeFragment()).commit();
-        // Show Home as selected in the drawer menu
-        navigationView.setCheckedItem(R.id.nav_home);}
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new HomeFragment()).commit();
+            // Show Home as selected in the drawer menu
+            navigationView.setCheckedItem(R.id.nav_home);
+        }
     }
 
     // Definition of listeners for each option in drawer menu
-    public boolean onNavigationItemSelected(MenuItem item){
-        switch (item.getItemId()){
+    public boolean onNavigationItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case R.id.nav_settings:
                 // when option "Settings" is selected, replace the xml object fragment_container with
                 // the layout within SettingsFragment.java
@@ -68,16 +69,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new HomeFragment()).commit();
                 break;
+            case R.id.nav_timer:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TofisTimerFragment()).commit();
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
     // For displaying purposes only (close drawer if user presses back button)
-    public void onBackPressed(){
-        if(drawer.isDrawerOpen(GravityCompat.START)) {
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        }else{
+        } else {
             super.onBackPressed();
         }
     }
