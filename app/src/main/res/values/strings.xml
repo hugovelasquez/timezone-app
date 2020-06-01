@@ -67,7 +67,7 @@
 
     <string name="timer_start">Start</string>
     <string name="timer_stop">Stop</string>
-    <string name="timer_reset">Reset</string>
+    <string name="timer_explanation">This is a simple timer that makes a sound every 30 seconds. Perfect for your stretching exercises :)</string>
 
 
 </resources>

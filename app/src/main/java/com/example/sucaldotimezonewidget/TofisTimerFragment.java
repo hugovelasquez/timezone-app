@@ -1,5 +1,6 @@
 package com.example.sucaldotimezonewidget;
 
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.os.Bundle;
@@ -23,7 +24,7 @@ public class TofisTimerFragment extends Fragment implements View.OnClickListener
     private boolean running;
 
     private TextView timeView;
-    private Button startBtn, stopBtn, resetBtn;
+    private Button startBtn, stopBtn;
 
     @Nullable
     @Override
@@ -36,11 +37,9 @@ public class TofisTimerFragment extends Fragment implements View.OnClickListener
         timeView = rootView.findViewById(R.id.time_view);
         startBtn = rootView.findViewById(R.id.start_button);
         stopBtn = rootView.findViewById(R.id.stop_button);
-        resetBtn = rootView.findViewById(R.id.reset_button);
 
         startBtn.setOnClickListener(this);
         stopBtn.setOnClickListener(this);
-        resetBtn.setOnClickListener(this);
 
         runTimer();
 
@@ -52,10 +51,6 @@ public class TofisTimerFragment extends Fragment implements View.OnClickListener
     }
 
     private void onClickStop() {
-        running = false;
-    }
-
-    private void onClickReset() {
         running = false;
         seconds = 0;
     }
@@ -72,16 +67,12 @@ public class TofisTimerFragment extends Fragment implements View.OnClickListener
 
                 String time
                         = String
-                        .format(Locale.getDefault(),
-                                "%02d:%02d",
-                                minutes, secs);
+                        .format(Locale.getDefault(), "%02d:%02d", minutes, secs);
 
                 timeView.setText(time);
 
                 if (running & secs % 30 == 0) {
-                    final ToneGenerator tg = new ToneGenerator(AudioManager.STREAM_MUSIC, ToneGenerator.MAX_VOLUME);
-                    tg.startTone(ToneGenerator.TONE_CDMA_ONE_MIN_BEEP, 1000);
-                    tg.release();
+                    getActivity().startService(new Intent(getContext(), SoundService.class));
                 }
 
                 if (running) {
@@ -101,9 +92,6 @@ public class TofisTimerFragment extends Fragment implements View.OnClickListener
                 break;
             case R.id.stop_button:
                 onClickStop();
-                break;
-            case R.id.reset_button:
-                onClickReset();
                 break;
         }
     }

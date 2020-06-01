@@ -7,34 +7,32 @@
     android:padding="16dp">
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:text="@string/timer_explanation" />
+
+    <TextView
         android:id="@+id/time_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_margin="20dp"
         android:textAppearance="@android:style/TextAppearance.Large"
         android:textSize="60sp" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="20dp">
 
         <Button
             android:id="@+id/start_button"
             style="@style/TimerBtnStyle"
+            android:layout_gravity="center"
             android:text="@string/timer_start" />
 
         <Button
             android:id="@+id/stop_button"
             style="@style/TimerBtnStyle"
+            android:layout_gravity="center"
             android:text="@string/timer_stop" />
-
-        <Button
-            android:id="@+id/reset_button"
-            style="@style/TimerBtnStyle"
-            android:text="@string/timer_reset" />
-    </LinearLayout>
 
 
 </LinearLayout>
